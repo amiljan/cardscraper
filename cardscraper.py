@@ -22,5 +22,28 @@ for item in range(len(order_list)):
         order_number_list.append(order_list[item])
         count += 5
 
-print(order_number_list)
+
+for item in range(len(order_number_list)):
+    driver.get(f"https://www.cardmarket.com/en/Magic/Orders/{order_number_list[item]}")
+    for card in range(1, 100):
+        try:
+            #card_row = driver.find_element_by_xpath(f'/html/body/main/section/div/div[1]/div/div[6]/table/tbody/tr[{card}]').text
+            #print(card_row)
+            card_name = driver.find_element_by_xpath(f'/html/body/main/section/div/div[1]/div/div[6]/table/tbody/tr[{card}]/td[4]/a').text
+            print(card_name)
+            card_html = driver.find_element_by_xpath(f'/html/body/main/section/div/div[1]/div/div[6]/table/tbody/tr[{card}]/td[4]/a').get_attribute("href")
+            print(card_html)
+        except:
+            break
+    if item == 1:
+        break
 driver.close()
+
+#name and price
+#/html/body/main/section/div/div[1]/div/div[6]/table/tbody/tr[1]
+#/html/body/main/section/div/div[1]/div/div[6]/table/tbody/tr[2]
+
+
+#link 
+#/html/body/main/section/div/div[1]/div/div[6]/table/tbody/tr[1]/td[4]/a
+#/html/body/main/section/div/div[1]/div/div[6]/table/tbody/tr[2]/td[4]/a
