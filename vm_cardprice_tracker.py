@@ -18,14 +18,14 @@ date = datetime.today().strftime('%Y-%m-%d')
 
 
 
-with open("valuable_cards.csv", newline="\n", encoding="utf-8") as cardlist:
+with open("/home/amiljan/python/cardscraper/valuable_cards.csv", newline="\n", encoding="utf-8") as cardlist:
     card_lines = csv.reader(cardlist, delimiter=';')
     firstline = True
     for line in card_lines:
         if firstline == True:
             firstline = False
             line.append(date)
-            valuable_card_list = open("valuable_cards1.csv", "w")
+            valuable_card_list = open("/home/amiljan/python/cardscraper/valuable_cards1.csv", "w")
             mySeparator = ";"
             card_data = mySeparator.join(line) + "\n"
             valuable_card_list.write(card_data)
@@ -49,7 +49,7 @@ with open("valuable_cards.csv", newline="\n", encoding="utf-8") as cardlist:
                     continue
         current_price_clean = current_price.replace(" €", "").replace(",",".")
         line.append(current_price_clean)
-        valuable_card_list = open("valuable_cards1.csv", "a")
+        valuable_card_list = open("/home/amiljan/python/cardscraper/valuable_cards1.csv", "a")
         mySeparator = ";"
         card_data = mySeparator.join(line) + "\n"
         valuable_card_list.write(card_data)
@@ -58,5 +58,5 @@ with open("valuable_cards.csv", newline="\n", encoding="utf-8") as cardlist:
 
 driver.close()
 
-os.remove("valuable_cards.csv")
-os.rename("valuable_cards1.csv","valuable_cards.csv")
+os.remove("/home/amiljan/python/cardscraper/valuable_cards.csv")
+os.rename("/home/amiljan/python/cardscraper/valuable_cards1.csv","/home/amiljan/python/cardscraper/valuable_cards.csv")
