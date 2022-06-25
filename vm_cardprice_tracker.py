@@ -58,5 +58,5 @@ with open("valuable_cards.csv", newline="\n", encoding="utf-8") as cardlist:
 
 driver.close()
 
-#os.remove("valuable_cards.csv")
-#os.rename("valuable_cards1.csv","valuable_cards.csv")
+os.remove("valuable_cards.csv")
+os.rename("valuable_cards1.csv","valuable_cards.csv")
