@@ -1,6 +1,9 @@
 import csv
+import datetime
 
 total_value = 0
+
+date = datetime.now()
 
 html_table = open("index.html", "w")
 html_table.write("<html>\n")
@@ -48,7 +51,7 @@ with open("/home/amiljan/python/cardscraper/valuable_cards.csv", newline="\n", e
 
 html_table = open("index.html", "a")
 html_table.write('</table>\n')
-html_table.write(f"<p>The current total value of all the cards is {round(total_value,2)}.</p>\n")
+html_table.write(f"<p>The current total value of all the cards is {round(total_value,2)}. Date and Time: {date} </p>\n")
 html_table.write('</body>\n')
 html_table.write('</html>\n')
 html_table.close()
