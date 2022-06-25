@@ -1,9 +1,10 @@
 import csv
-import datetime
+from datetime import datetime
 
 total_value = 0
 
-date = datetime.now()
+now = datetime.now()
+date = now.strftime("%d/%m/%Y %H:%M:%S")
 
 html_table = open("index.html", "w")
 html_table.write("<html>\n")
