@@ -14,7 +14,7 @@ html_table.write("<h2>Magic Card Prices</h2>\n")
 html_table.write('<table style="width:100%">\n')
 html_table.close()
 
-with open("valuable_cards.csv", newline="\n", encoding="utf-8") as cardlist:
+with open("/home/amiljan/python/cardscraper/valuable_cards.csv", newline="\n", encoding="utf-8") as cardlist:
     card_lines = csv.reader(cardlist, delimiter=';')
     firstline = True
     for line in card_lines:
