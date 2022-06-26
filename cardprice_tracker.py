@@ -49,6 +49,7 @@ with open("valuable_cards.csv", newline="\n", encoding="utf-8") as cardlist:
                     continue
         current_price_clean = current_price.replace(" €", "").replace(",",".")
         line.append(current_price_clean)
+        line[2] = str(f'"{url}"')
         valuable_card_list = open("valuable_cards1.csv", "a")
         mySeparator = ";"
         card_data = mySeparator.join(line) + "\n"
