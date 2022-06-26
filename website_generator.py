@@ -6,10 +6,10 @@ total_value = 0
 now = datetime.now()
 date = now.strftime("%d/%m/%Y %H:%M:%S")
 
-html_table = open("index.html", "w")
+html_table = open("/home/amiljan/python/cardscraper/index.html", "w")
 html_table.write("<html>\n")
 html_table.close()
-html_table = open("index.html", "a")
+html_table = open("/home/amiljan/python/cardscraper/index.html", "a")
 html_table.write("<style>\n")
 html_table.write("table, th, td {  border:1px solid black;}\n")
 html_table.write("</style>\n")
@@ -27,7 +27,7 @@ with open("/home/amiljan/python/cardscraper/valuable_cards.csv", newline="\n", e
             firstline = False
             line.append("Gain/Loss")
             
-            html_table = open("index.html", "a")
+            html_table = open("/home/amiljan/python/cardscraper/index.html", "a")
             html_table.write("  <tr>\n")
             for row in range(len(line)):
                 html_table.write(f"     <th>{line[row]}</th>\n")
@@ -43,14 +43,14 @@ with open("/home/amiljan/python/cardscraper/valuable_cards.csv", newline="\n", e
         total_value += float(card_current_price)
         line.append(round(card_value_change,2))
 
-        html_table = open("index.html", "a")
+        html_table = open("/home/amiljan/python/cardscraper/index.html", "a")
         html_table.write("  <tr>\n")
         for row in range(len(line)):
             html_table.write(f"     <td>{line[row]}</td>\n")
         html_table.write("  </tr>\n")
         html_table.close()
 
-html_table = open("index.html", "a")
+html_table = open("/home/amiljan/python/cardscraper/index.html", "a")
 html_table.write('</table>\n')
 html_table.write(f"<p>The current total value of all the cards is {round(total_value,2)}. Date and Time: {date} </p>\n")
 html_table.write('</body>\n')
