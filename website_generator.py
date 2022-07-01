@@ -1,5 +1,6 @@
 import csv
 from datetime import datetime
+import pandas as pd
 
 total_value = 0
 
@@ -26,6 +27,8 @@ with open("/home/amiljan/python/cardscraper/valuable_cards.csv", newline="\n", e
         if firstline == True:
             firstline = False
             line.append("Gain/Loss")
+            line.append("5 day")
+            del line[2]
             
             html_table = open("/home/amiljan/python/cardscraper/index.html", "a")
             html_table.write("  <tr>\n")
@@ -33,15 +36,26 @@ with open("/home/amiljan/python/cardscraper/valuable_cards.csv", newline="\n", e
                 html_table.write(f"     <th>{line[row]}</th>\n")
             html_table.write("  </tr>\n")
             html_table.close()
+
+            dates = ["Buy"]
+            for date in range(2,len(line)-1):
+                dates.append(line[date])
             
             continue
         
+        
+
+        del line[2]
+
         card_name = line[0]
         card_buy_price = line[1]
         card_current_price = line[-1]
+        card_fiveday_price = line[-5]
         card_value_change = float(card_current_price) - float(card_buy_price)
         total_value += float(card_current_price)
+        five_day_change = float(card_current_price) - float(card_fiveday_price)
         line.append(round(card_value_change,2))
+        line.append(round(five_day_change,2))
 
         html_table = open("/home/amiljan/python/cardscraper/index.html", "a")
         html_table.write("  <tr>\n")
@@ -49,6 +63,23 @@ with open("/home/amiljan/python/cardscraper/valuable_cards.csv", newline="\n", e
             html_table.write(f"     <td>{line[row]}</td>\n")
         html_table.write("  </tr>\n")
         html_table.close()
+
+del dates[-1]
+df = pd.read_csv("/home/amiljan/python/cardscraper/valuable_cards.csv",sep=';')
+
+totals = ["TOTAL"]
+for header in dates:
+    sum_of_values = round(df[header].sum(),2)
+    totals.append(sum_of_values)
+
+html_table = open("/home/amiljan/python/cardscraper/index.html", "a")
+html_table.write("  <tr>\n")
+for row in range(len(totals)):
+    html_table.write(f"     <td>{totals[row]}</td>\n")
+html_table.write("  </tr>\n")
+html_table.close()
+
+
 
 html_table = open("/home/amiljan/python/cardscraper/index.html", "a")
 html_table.write('</table>\n')
