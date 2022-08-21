@@ -28,6 +28,7 @@ with open("/home/amiljan/python/cardscraper/valuable_cards.csv", newline="\n", e
             firstline = False
             line.append("Gain/Loss")
             line.append("5 day")
+            line.append("30 day")
             del line[2]
             
             html_table = open("/home/amiljan/python/cardscraper/index.html", "a")
@@ -51,11 +52,14 @@ with open("/home/amiljan/python/cardscraper/valuable_cards.csv", newline="\n", e
         card_buy_price = line[1]
         card_current_price = line[-1]
         card_fiveday_price = line[-5]
+        card_thirtyday_price = line[-30]
         card_value_change = float(card_current_price) - float(card_buy_price)
         total_value += float(card_current_price)
         five_day_change = float(card_current_price) - float(card_fiveday_price)
+        thirty_day_change = float(card_current_price) - float(card_thirtyday_price)
         line.append(round(card_value_change,2))
         line.append(round(five_day_change,2))
+        line.append(round(thirty_day_change,2))
 
         html_table = open("/home/amiljan/python/cardscraper/index.html", "a")
         html_table.write("  <tr>\n")
