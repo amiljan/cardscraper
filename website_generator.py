@@ -26,7 +26,7 @@ with open("/home/amiljan/python/cardscraper/valuable_cards.csv", newline="\n", e
         
         if firstline == True:
             firstline = False
-            line.append("Gain/Loss")
+            line.append("Gains")
             line.append("5 day")
             line.append("30 day")
             del line[2]
@@ -68,6 +68,7 @@ with open("/home/amiljan/python/cardscraper/valuable_cards.csv", newline="\n", e
         html_table.write("  </tr>\n")
         html_table.close()
 
+del dates[-2]
 del dates[-1]
 df = pd.read_csv("/home/amiljan/python/cardscraper/valuable_cards.csv",sep=';')
 
